@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.jface.text.BadLocationException;
 import org.eclipse.jface.text.IDocument;
@@ -22,6 +24,9 @@ import jp.co.dreamarts.velocity.editor.preferences.PreferenceConstants;
  * Provides auto-completion for VTL directives, variables, and HTML tags
  */
 public class VelocityContentAssistProcessor implements IContentAssistProcessor {
+
+    private static final Pattern MACRO_DEFINITION_PATTERN =
+            Pattern.compile("#macro\\s*\\(\\s*([A-Za-z_][A-Za-z0-9_]*)");
 
     // VTL Directive templates
     private static final String[][] VTL_DIRECTIVES = {
@@ -98,10 +103,23 @@ public class VelocityContentAssistProcessor implements IContentAssistProcessor {
 
             // VTL Directives (triggered by #)
             if (prefix.startsWith("#") || prefix.isEmpty()) {
+                Set<String> existingDirectives = new LinkedHashSet<>();
                 for (String[] directive : VTL_DIRECTIVES) {
                     if (directive[0].toLowerCase().startsWith(prefix.toLowerCase()) || prefix.isEmpty()) {
+                        existingDirectives.add(directive[0]);
                         proposals.add(createProposal(directive[0], directive[1], directive[2],
                                 replacementOffset, prefixLength, offset));
+                    }
+                }
+
+                for (String macroName : parseMacroNames(document.get())) {
+                    String macroDirective = "#" + macroName;
+                    if (existingDirectives.contains(macroDirective)) {
+                        continue;
+                    }
+                    if (macroDirective.toLowerCase().startsWith(prefix.toLowerCase()) || prefix.isEmpty()) {
+                        proposals.add(createProposal(macroDirective, macroDirective,
+                                "Macro defined in current file", replacementOffset, prefixLength, offset));
                     }
                 }
             }
@@ -206,6 +224,23 @@ public class VelocityContentAssistProcessor implements IContentAssistProcessor {
         }
 
         return new ArrayList<>(variableNames);
+    }
+
+    static List<String> parseMacroNames(String templateText) {
+        Set<String> macroNames = new LinkedHashSet<>();
+        if (templateText == null || templateText.isBlank()) {
+            return new ArrayList<>();
+        }
+
+        Matcher matcher = MACRO_DEFINITION_PATTERN.matcher(templateText);
+        while (matcher.find()) {
+            String macroName = matcher.group(1);
+            if (macroName != null && !macroName.isBlank()) {
+                macroNames.add(macroName);
+            }
+        }
+
+        return new ArrayList<>(macroNames);
     }
 
     private static String normalizeVariableName(String value) {

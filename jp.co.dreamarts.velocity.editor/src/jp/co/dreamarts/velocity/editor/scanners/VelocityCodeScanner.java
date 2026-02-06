@@ -49,7 +49,8 @@ public class VelocityCodeScanner extends RuleBasedScanner {
         rules.add(new VelocityVariableRule(variableToken));
 
         // VTL Directive rules
-        WordRule directiveRule = new WordRule(new VelocityDirectiveDetector(), Token.UNDEFINED);
+        // Use directiveToken as default so custom macros like #myMacro are also highlighted.
+        WordRule directiveRule = new WordRule(new VelocityDirectiveDetector(), directiveToken);
         for (String directive : DIRECTIVES) {
             directiveRule.addWord(directive, directiveToken);
         }

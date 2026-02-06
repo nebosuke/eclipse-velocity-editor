@@ -11,3 +11,8 @@ target/
 
 # Logs
 *.log
+
+# IntelliJ / Gradle
+.idea/
+.gradle/
+build/

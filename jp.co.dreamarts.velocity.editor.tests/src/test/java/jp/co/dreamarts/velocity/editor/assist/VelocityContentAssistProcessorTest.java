@@ -57,6 +57,24 @@ class VelocityContentAssistProcessorTest {
             assertTrue(VelocityContentAssistProcessor.parseVariableNames(null).isEmpty());
             assertTrue(VelocityContentAssistProcessor.parseVariableNames("   ").isEmpty());
         }
+
+        @Test
+        @DisplayName("マクロ定義を抽出して重複を除去する")
+        void parseMacroNamesExtractsAndDeduplicates() {
+            var parsed = VelocityContentAssistProcessor.parseMacroNames(
+                    "#macro(renderUser $user)\n#end\n#macro(renderItem $item)\n#end\n#macro(renderUser $user2)\n#end");
+
+            assertEquals(2, parsed.size());
+            assertEquals("renderUser", parsed.get(0));
+            assertEquals("renderItem", parsed.get(1));
+        }
+
+        @Test
+        @DisplayName("マクロ抽出はnullや空文字で空リストを返す")
+        void parseMacroNamesReturnsEmptyForBlank() {
+            assertTrue(VelocityContentAssistProcessor.parseMacroNames(null).isEmpty());
+            assertTrue(VelocityContentAssistProcessor.parseMacroNames("   ").isEmpty());
+        }
     }
 
     @Nested
@@ -133,6 +151,25 @@ class VelocityContentAssistProcessorTest {
                 assertTrue(displayString.contains("#if") || displayString.contains("#elseif"),
                     "候補が#ifにマッチしていません: " + displayString);
             }
+        }
+
+        @Test
+        @DisplayName("同一ファイルで定義したマクロが#補完候補に含まれる")
+        void returnsCurrentFileMacroProposals() throws BadLocationException {
+            setupMocks("#re", 3);
+            when(document.get()).thenReturn("#macro(renderUser $user)\n#end\n#macro(helper $x)\n#end");
+
+            ICompletionProposal[] proposals = processor.computeCompletionProposals(viewer, 3);
+
+            assertNotNull(proposals);
+            boolean hasRenderUser = false;
+            for (ICompletionProposal proposal : proposals) {
+                if ("#renderUser".equals(proposal.getDisplayString())) {
+                    hasRenderUser = true;
+                    break;
+                }
+            }
+            assertTrue(hasRenderUser, "同一ファイルマクロ #renderUser の補完候補が含まれていません");
         }
     }
 
