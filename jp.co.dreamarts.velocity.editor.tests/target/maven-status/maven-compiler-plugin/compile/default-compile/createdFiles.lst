@@ -1,0 +1,16 @@
+jp/co/dreamarts/velocity/editor/preferences/ColorManager.class
+jp/co/dreamarts/velocity/editor/editors/VelocityEditor.class
+jp/co/dreamarts/velocity/editor/scanners/VelocityVariableRule.class
+jp/co/dreamarts/velocity/editor/scanners/HTMLTagScanner$HTMLWordDetector.class
+jp/co/dreamarts/velocity/editor/scanners/VelocityCommentScanner.class
+jp/co/dreamarts/velocity/editor/Activator.class
+jp/co/dreamarts/velocity/editor/scanners/HTMLTagRule.class
+jp/co/dreamarts/velocity/editor/editors/VelocityDocumentProvider.class
+jp/co/dreamarts/velocity/editor/assist/VelocityContentAssistProcessor.class
+jp/co/dreamarts/velocity/editor/scanners/VelocityCodeScanner$VelocityDirectiveDetector.class
+jp/co/dreamarts/velocity/editor/scanners/VelocityPartitionScanner.class
+jp/co/dreamarts/velocity/editor/preferences/VelocityPreferencePage.class
+jp/co/dreamarts/velocity/editor/editors/VelocityDoubleClickStrategy.class
+jp/co/dreamarts/velocity/editor/scanners/HTMLTagScanner.class
+jp/co/dreamarts/velocity/editor/scanners/VelocityCodeScanner.class
+jp/co/dreamarts/velocity/editor/editors/VelocityConfiguration.class

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="jp.co.dreamarts.velocity.editor.feature"
+      label="Velocity Template Editor"
+      version="1.0.0.202602060717"
+      provider-name="DreamArts Corporation">
+
+   <description>
+      Eclipse plugin for editing Velocity Template Language (VTL) files.
+   </description>
+
+   <license url="">
+      MIT License
+   </license>
+
+   <plugin
+         id="jp.co.dreamarts.velocity.editor"
+         download-size="35"
+         install-size="59"
+         version="1.0.0.202602060717"
+         unpack="false"/>
+
+</feature>

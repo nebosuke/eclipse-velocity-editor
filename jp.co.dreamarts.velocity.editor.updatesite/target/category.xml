@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/jp.co.dreamarts.velocity.editor.feature_1.0.0.qualifier.jar" id="jp.co.dreamarts.velocity.editor.feature" version="1.0.0.qualifier">
+      <category name="velocity-editor"/>
+   </feature>
+   <category-def name="velocity-editor" label="Velocity Template Editor">
+      <description>Eclipse plugin for editing Velocity Template Language (VTL) files.</description>
+   </category-def>
+</site>
