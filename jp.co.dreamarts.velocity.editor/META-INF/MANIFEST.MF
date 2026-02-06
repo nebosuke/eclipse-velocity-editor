@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Velocity Template Editor
+Bundle-SymbolicName: jp.co.dreamarts.velocity.editor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: jp.co.dreamarts.velocity.editor.Activator
+Bundle-Vendor: DreamArts Corporation
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-17
+Automatic-Module-Name: jp.co.dreamarts.velocity.editor
+Bundle-ActivationPolicy: lazy
+Export-Package: jp.co.dreamarts.velocity.editor,
+ jp.co.dreamarts.velocity.editor.editors,
+ jp.co.dreamarts.velocity.editor.scanners,
+ jp.co.dreamarts.velocity.editor.assist,
+ jp.co.dreamarts.velocity.editor.preferences
