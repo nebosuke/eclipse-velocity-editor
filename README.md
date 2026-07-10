@@ -60,6 +60,15 @@ You can add this directory in `Help > Install New Software... > Add... > Local..
 2. Import this project
 3. Right-click the project and choose `Run As > Eclipse Application`
 
+## Automated Update Site Publishing
+
+Every push to `main` runs `.github/workflows/publish.yml`, which:
+1. Increments the patch version across all project files (`scripts/bump_version.py`) and pushes that bump back to `main`.
+2. Builds the update site with Maven/Tycho.
+3. Replaces the contents of the `gh-pages` branch with the newly built repository and pushes it.
+
+No manual steps are needed for a normal release. Use the manual steps below only if you need to publish outside of CI (e.g. to test a build locally or recover from a broken workflow run).
+
 ## Manual Update Site Publishing
 
 1. Increment version numbers before publishing.
