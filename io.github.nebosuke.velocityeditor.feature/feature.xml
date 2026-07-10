@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature
+      id="io.github.nebosuke.velocityeditor.feature"
+      label="Velocity Template Editor"
+      version="1.0.0.qualifier"
+      provider-name="Yatsuke Works">
+
+   <description>
+      Eclipse plugin for editing Velocity Template Language (VTL) files.
+   </description>
+
+   <license url="">
+      MIT License
+   </license>
+
+   <plugin
+         id="io.github.nebosuke.velocityeditor"
+         download-size="0"
+         install-size="0"
+         version="0.0.0"
+         unpack="false"/>
+
+</feature>

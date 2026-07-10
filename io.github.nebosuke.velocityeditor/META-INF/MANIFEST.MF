@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Velocity Template Editor
+Bundle-SymbolicName: io.github.nebosuke.velocityeditor;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: io.github.nebosuke.velocityeditor.Activator
+Bundle-Vendor: Yatsuke Works
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.jface.text,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.editors,
+ org.eclipse.ui.workbench.texteditor,
+ org.eclipse.core.resources
+Bundle-RequiredExecutionEnvironment: JavaSE-21
+Automatic-Module-Name: io.github.nebosuke.velocityeditor
+Bundle-ActivationPolicy: lazy
+Export-Package: io.github.nebosuke.velocityeditor,
+ io.github.nebosuke.velocityeditor.editors,
+ io.github.nebosuke.velocityeditor.scanners,
+ io.github.nebosuke.velocityeditor.assist,
+ io.github.nebosuke.velocityeditor.preferences

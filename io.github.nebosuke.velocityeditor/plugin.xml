@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <!-- Content Type Definition for VTL files -->
+   <extension point="org.eclipse.core.contenttype.contentTypes">
+      <content-type
+            id="io.github.nebosuke.velocityeditor.vtlContentType"
+            name="Velocity Template"
+            base-type="org.eclipse.core.runtime.text"
+            file-extensions="vtl,vm"
+            priority="normal">
+      </content-type>
+   </extension>
+
+   <!-- Editor Definition -->
+   <extension point="org.eclipse.ui.editors">
+      <editor
+            id="io.github.nebosuke.velocityeditor.VelocityEditor"
+            name="Velocity Template Editor"
+            icon="icons/velocity.png"
+            extensions="vtl,vm"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            class="io.github.nebosuke.velocityeditor.editors.VelocityEditor"
+            default="true">
+         <contentTypeBinding contentTypeId="io.github.nebosuke.velocityeditor.vtlContentType"/>
+      </editor>
+   </extension>
+
+   <!-- File Association -->
+   <extension point="org.eclipse.ui.editors">
+      <editorContentTypeBinding
+            contentTypeId="io.github.nebosuke.velocityeditor.vtlContentType"
+            editorId="io.github.nebosuke.velocityeditor.VelocityEditor">
+      </editorContentTypeBinding>
+   </extension>
+
+   <!-- Preference Page (Optional) -->
+   <extension point="org.eclipse.ui.preferencePages">
+      <page
+            id="io.github.nebosuke.velocityeditor.preferences.VelocityPreferencePage"
+            name="Velocity Editor"
+            class="io.github.nebosuke.velocityeditor.preferences.VelocityPreferencePage">
+      </page>
+   </extension>
+
+   <!-- Key Binding: Toggle line comment with Cmd+/ -->
+   <extension point="org.eclipse.ui.bindings">
+      <key
+            commandId="org.eclipse.ui.edit.text.toggleComment"
+            contextId="org.eclipse.ui.textEditorScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+/">
+      </key>
+   </extension>
+</plugin>
