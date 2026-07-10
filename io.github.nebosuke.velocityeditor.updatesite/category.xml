@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <site>
-   <feature url="features/io.github.nebosuke.velocityeditor.feature_1.0.1.qualifier.jar" id="io.github.nebosuke.velocityeditor.feature" version="1.0.1.qualifier">
+   <feature url="features/io.github.nebosuke.velocityeditor.feature_1.0.2.qualifier.jar" id="io.github.nebosuke.velocityeditor.feature" version="1.0.2.qualifier">
       <category name="velocity-editor"/>
    </feature>
    <category-def name="velocity-editor" label="Velocity Template Editor">
